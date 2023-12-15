@@ -1,5 +1,6 @@
 ﻿using DSharpPlus;
 using DSharpPlus.CommandsNext;
+using GenesysDiceBot.commands;
 using GenesysDiceBot.config;
 using System.Threading.Tasks;
 
@@ -37,7 +38,7 @@ namespace GenesysDiceBot
             
             // Instantiate a new client with all the properties of the discordConfig object above.
             Client = new DiscordClient(discordConfig);
-            //Turns 
+            //Turns on the Client
             Client.Ready += Client_Ready;
 
             var commandsConfig = new CommandsNextConfiguration()
@@ -50,7 +51,7 @@ namespace GenesysDiceBot
             //
             Commands = Client.UseCommandsNext(commandsConfig);
 
-            
+            Commands.RegisterCommands<TestCommands>();
             
             await Client.ConnectAsync();
             await Task.Delay(-1);
