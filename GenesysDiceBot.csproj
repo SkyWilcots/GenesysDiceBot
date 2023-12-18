@@ -148,6 +148,8 @@
     <Compile Include="commands\RollerCommands.cs" />
     <Compile Include="commands\TestCommands.cs" />
     <Compile Include="config\JSONReader.cs" />
+    <Compile Include="Dice\NegativeDie.cs" />
+    <Compile Include="Dice\PositiveDie.cs" />
     <Compile Include="Dice\Die.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,9 +8,9 @@ namespace GenesysDiceBot.Dice
 {
     public class Die
     {
-        private int faces { get; set; }
-        private string[] values { get; set; }
-        private string faceValue
+        internal int faceCount { get; set; }
+        internal string[] values { get; set; }
+        internal string faceValue
         {
             get { return faceValue; }
             set
@@ -34,8 +34,8 @@ namespace GenesysDiceBot.Dice
 
         public Die()
         {
-            faces = 6;
-            values = new string[faces];
+            faceCount = 6;
+            values = new string[faceCount];
             values[0] = "s";
             values[1] = "a";
             values[2] = "t";
@@ -47,7 +47,7 @@ namespace GenesysDiceBot.Dice
         public string roll()
         {
             Random rnd = new Random();
-            int result = rnd.Next(faces);
+            int result = rnd.Next(faceCount);
             return values[result];
         }
     }
