@@ -38,9 +38,11 @@ namespace GenesysDiceBot
             
             // Instantiate a new client with all the properties of the discordConfig object above.
             Client = new DiscordClient(discordConfig);
-            //Turns on the Client
+            
+            // Task Handler Ready event turns on the Client 
             Client.Ready += Client_Ready;
 
+            // Sets up the Commands Configuration
             var commandsConfig = new CommandsNextConfiguration()
             {
                 StringPrefixes = new string[] { jsonReader.prefix },
@@ -48,11 +50,13 @@ namespace GenesysDiceBot
                 EnableDms = true,
                 EnableDefaultHelp = false,
             };
-            //
+            
             Commands = Client.UseCommandsNext(commandsConfig);
 
+            // Registers the commands.
             Commands.RegisterCommands<TestCommands>();
             
+            // Connects to get the bot online and ensure it stays online indefinitely.
             await Client.ConnectAsync();
             await Task.Delay(-1);
         }

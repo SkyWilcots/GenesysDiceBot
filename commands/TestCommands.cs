@@ -13,7 +13,7 @@ namespace GenesysDiceBot.commands
         public async Task FirstCommand(CommandContext ctx)
         {
             // This command sends a message to the channel where the command was triggered, and responds with "Hello" directly to the user who triggered it.
-            await ctx.Channel.SendMessageAsync($"Hello, {ctx.User.Username}!");
+            await ctx.Channel.SendMessageAsync($"Hello, {ctx.Message.Author.Mention}!");
         }
 
         [Command("testroll")]
