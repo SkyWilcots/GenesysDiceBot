@@ -153,6 +153,7 @@
     <Compile Include="Dice\Die.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roller\Roller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
