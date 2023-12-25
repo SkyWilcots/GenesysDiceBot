@@ -2,6 +2,9 @@
 using DSharpPlus.CommandsNext;
 using GenesysDiceBot.commands;
 using GenesysDiceBot.config;
+using GenesysDiceBot.Dice;
+using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 
 namespace GenesysDiceBot
@@ -65,5 +68,7 @@ namespace GenesysDiceBot
         {
             return Task.CompletedTask;
         }
+
+       
     }
 }

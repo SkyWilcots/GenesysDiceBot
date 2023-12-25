@@ -29,7 +29,13 @@ namespace GenesysDiceBot.Dice
         public BoostDie()
         {
             faceCount = 6;
-            string[] values = { "", "", "s", "sa", "aa", "a" };
+            values = new string[faceCount];
+            values[0] = "";
+            values[1] = "";
+            values[2] = "s";
+            values[3] = "sa";
+            values[4] = "aa";
+            values[5] = "a";
         }
     }
     

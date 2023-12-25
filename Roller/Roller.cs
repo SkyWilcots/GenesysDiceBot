@@ -62,14 +62,14 @@ namespace GenesysDiceBot.Roller
 
         public Dictionary<char,int> NetIconTotal(Dictionary<char,int> talliedIconTotal)
         {
-            if (talliedIconTotal['s'] <= talliedIconTotal['f'])
+            if (talliedIconTotal['s'] + talliedIconTotal['t'] <= talliedIconTotal['f'] + talliedIconTotal['d'])
             {
-                talliedIconTotal['f'] -= talliedIconTotal['s'];
+                talliedIconTotal['f'] = talliedIconTotal['f'] + talliedIconTotal['d'] - talliedIconTotal['s'] - talliedIconTotal['t'];
                 talliedIconTotal['s'] = 0;
             }
             else 
             { 
-                talliedIconTotal['s'] -= talliedIconTotal['f'];
+                talliedIconTotal['s'] = talliedIconTotal['s'] + talliedIconTotal['t'] - talliedIconTotal['f'] - talliedIconTotal['d'];
                 talliedIconTotal['f'] = 0;
             }
 
