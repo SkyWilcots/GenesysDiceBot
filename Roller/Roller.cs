@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using GenesysDiceBot.Dice;
 
-namespace GenesysDiceBot.Roller
+namespace GenesysDiceBot.RollMachine
 {
-    internal class Roller
+    public class Roller
     {
         public List<Die> diceContainer { get; set; }
         public AbilityDie abilityDie { get; }
@@ -18,7 +18,7 @@ namespace GenesysDiceBot.Roller
         public ChallengeDie challengeDie { get; }
         public SetbackDie setbackDie { get; }
 
-        public Roller() 
+        public Roller()
         {
             diceContainer = new List<Die>();
             abilityDie = new AbilityDie();

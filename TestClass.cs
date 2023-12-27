@@ -1,9 +1,7 @@
 ﻿using GenesysDiceBot.Dice;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GenesysDiceBot.RollMachine;
 
 namespace GenesysDiceBot
 {
@@ -23,20 +21,28 @@ namespace GenesysDiceBot
                 ChallengeDie cd = new ChallengeDie();
                 SetbackDie sd = new SetbackDie();
 
-     /*       Console.WriteLine(bd.values[0]);
-            Console.WriteLine(bd.values[1]);
-            Console.WriteLine(bd.values[2]);
-            Console.WriteLine(bd.values[3]);
-            Console.WriteLine(bd.values[4]);
-            Console.WriteLine(bd.values[5]);
-            Console.WriteLine(ad.values[6]);
-            Console.WriteLine(ad.values[7]);
-     */
-           
-               // Console.WriteLine(ad.roll());
-                //Console.WriteLine(pd.roll());
-               // Console.WriteLine(bd.roll());
+            Roller r = new Roller();
+            Dictionary<char, int> testDictionary = new Dictionary<char, int>();
+            string result = "sssaafh";
+            testDictionary = r.TallyIconTotal(result);
 
+            Dictionary<char, int> controlDictionary = new Dictionary<char, int>
+            {
+                { 's', 2 },
+                { 'f', 0 },
+                { 'a', 1 },
+                { 'h', 0 },
+                { 't', 0 },
+                { 'd', 0 }
+            };
+
+
+            //Act
+            Dictionary<char, int> resultMap = r.NetIconTotal(testDictionary);
+            foreach (KeyValuePair<char, int> ci in resultMap)
+            {
+                Console.WriteLine(ci.Key + ", " + ci.Value);
+            }
 
         }
     }

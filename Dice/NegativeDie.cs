@@ -11,7 +11,15 @@ namespace GenesysDiceBot.Dice
         public DifficultyDie() 
         {
             faceCount = 8;
-            string[] values = { "", "f", "ff", "h", "h", "h", "hh", "fh" };
+            values = new string[faceCount];
+            values[0] = "";
+            values[1] = "f";
+            values[2] = "ff";
+            values[3] = "h";
+            values[4] = "h";
+            values[5] = "h";
+            values[6] = "hh";
+            values[7] = "fh";
         }
     }
 
@@ -20,7 +28,13 @@ namespace GenesysDiceBot.Dice
         public SetbackDie()
         {
             faceCount = 6;
-            string[] values = { "", "", "f", "f", "h", "h" };
+            string[] values = new string[faceCount];
+            values[0] = "";
+            values[1] = "";
+            values[2] = "f";
+            values[3] = "f";
+            values[4] = "h";
+            values[5] = "h";
         }
     }
 
@@ -29,7 +43,19 @@ namespace GenesysDiceBot.Dice
         public ChallengeDie()
         {
             faceCount = 12;
-            string[] values = { "", "f", "f", "ff", "ff", "h", "h", "fh", "fh", "hh", "hh", "d"};
+            string[] values = new string[faceCount];
+            values[0] = "";
+            values[1] = "f";
+            values[2] = "f";
+            values[3] = "ff";
+            values[4] = "ff";
+            values[5] = "h";
+            values[6] = "h";
+            values[7] = "fh";
+            values[8] = "fh";
+            values[9] = "hh";
+            values[10] = "hh";
+            values[11] = "d";
         }
     }
 }
