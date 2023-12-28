@@ -94,10 +94,139 @@ namespace GenesysDiceBot.RollMachine
                 talliedIconTotal['t'] -= talliedIconTotal['d'];
                 talliedIconTotal['d'] = 0;
             }
-            //Change this part. Triumphs and Despairs need to be counted separately as additional Successes and Failures
-            //They also need to be able to keep their values for the writeup that comes later.
+           
 
             return talliedIconTotal;
+        }
+
+        public string ResultsWriteUp(Dictionary<char,int> results)
+        {
+            int keyCounter = 0;
+            string writeup = "You rolled: \n";
+            string amp = "";
+            string semicolon = ".";
+            foreach (char key in results.Keys) 
+            {
+               if (results[key] <= 0) { results.Remove(key); }
+                else {  keyCounter++; }
+            }
+            if (results.Count > 1) { amp = "and "; semicolon = ","; }
+            if (results.Count > 0) 
+            {
+                while (keyCounter > 1)
+                {
+                    semicolon = ",";
+                    if (results.ContainsKey('s')) 
+                    {
+                        if (results['s'] == 1)
+                        {
+                            writeup += "1 Success" + semicolon + "\n";
+                        }
+                        else
+                        {
+                            writeup += results['s'].ToString() + " Successes" + semicolon + "\n";
+                        }
+                        results.Remove('s');
+                        keyCounter--;
+
+                    }
+
+                    if (results.ContainsKey('f'))
+                    {
+                        if (results['f'] == 1)
+                        {
+                            writeup += "1 Failure" + semicolon + "\n";
+                        }
+                        else
+                        {
+                            writeup += results['f'].ToString() + " Failures" + semicolon + "\n";
+                        }
+                        results.Remove('f');
+                        keyCounter--;
+                    }
+
+                    if (results.ContainsKey('a'))
+                    {
+                        if (results['a'] == 1)
+                        {
+                            writeup += "1 Advantage" + semicolon + "\n";
+                        }
+                        else
+                        {
+                            writeup += results['a'].ToString() + " Advantages" + semicolon + "\n";
+                        }
+                        results.Remove('a');
+                        keyCounter--;
+                    }
+
+                    if (results.ContainsKey('h'))
+                    {
+                        if (results['h'] == 1)
+                        {
+                            writeup += "1 Threat" + semicolon + "\n";
+                        }
+                        else
+                        {
+                            writeup += results['h'].ToString() + " Threats" + semicolon + "\n";
+                        }
+                        results.Remove('h');
+                        keyCounter--;
+                    }
+
+                    if (results.ContainsKey('t'))
+                    {
+                        if (results['t'] == 1)
+                        {
+                            writeup += "1 Triumphs" + semicolon + "\n";
+                        }
+                        else
+                        {
+                            writeup += results['t'].ToString() + " Triumphs" + semicolon + "\n";
+                        }
+                        results.Remove('t');
+                        keyCounter--;
+                    }
+
+                }
+                semicolon = ".";
+                string lastIcon = "";
+                foreach(char key in results.Keys)
+                {
+                    switch(key)
+                    {
+                        case 's':
+                            if (results[key] == 1) { lastIcon = " Success"; }
+                            else lastIcon = " Successes";
+                            break;
+                        case 'f':
+                            if (results[key] == 1) { lastIcon = " Failure"; }
+                            else lastIcon = " Failures";
+                            break;
+                        case 'a':
+                            if (results[key] == 1) { lastIcon = " Advantage"; }
+                            else lastIcon = " Advantages";
+                            break;
+                        case 'h':
+                            if (results[key] == 1) { lastIcon = " Threat"; }
+                            else lastIcon = " Threats";
+                            break;
+                        case 't':
+                            if (results[key] == 1) { lastIcon = " Triumph"; }
+                            else lastIcon = " Triumphs";
+                            break;
+                        case 'd':
+                            if (results[key] == 1) { lastIcon = " Despair"; }
+                            else lastIcon = " Despairs";
+                            break;
+                    }
+                    writeup += amp + results[key].ToString() + lastIcon + semicolon;
+                }
+            }
+            else
+            {
+                writeup = "A completely even roll!?";
+            }
+            return writeup;
         }
     }
 }
