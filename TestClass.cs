@@ -44,6 +44,8 @@ namespace GenesysDiceBot
                 Console.WriteLine(ci.Key + ", " + ci.Value);
             }
 
+            Console.WriteLine(r.ResultsWriteUp(resultMap));
+
         }
     }
 }

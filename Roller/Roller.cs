@@ -101,19 +101,30 @@ namespace GenesysDiceBot.RollMachine
 
         public string ResultsWriteUp(Dictionary<char,int> results)
         {
-            int keyCounter = 0;
-            string writeup = "You rolled: \n";
+            string writeup = "You rolled: \n\n";
+            writeup += "Successes: " + results['s'] + "\n";
+            writeup += "Failures: " + results['f'] + "\n";
+            writeup += "Advantages: " + results['a'] + "\n";
+            writeup += "Threats: " + results['h'] + "\n";
+            writeup += "Triumphs: " + results['t'] + "\n";
+            writeup += "Despairs: " + results['d'];
+
+
+            return writeup;
+
+
+
+            /*int keyCounter = 0;
             string amp = "";
             string semicolon = ".";
             foreach (char key in results.Keys) 
             {
                if (results[key] <= 0) { results.Remove(key); }
-                else {  keyCounter++; }
             }
-            if (results.Count > 1) { amp = "and "; semicolon = ","; }
-            if (results.Count > 0) 
+            if (results.Count() > 1) { amp = "and "; semicolon = ","; }
+            if (results.Count() > 0) 
             {
-                while (keyCounter > 1)
+                while (results.Count() > 1)
                 {
                     semicolon = ",";
                     if (results.ContainsKey('s')) 
@@ -226,7 +237,7 @@ namespace GenesysDiceBot.RollMachine
             {
                 writeup = "A completely even roll!?";
             }
-            return writeup;
+            return writeup;*/
         }
     }
 }
