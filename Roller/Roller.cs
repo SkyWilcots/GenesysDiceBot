@@ -35,7 +35,7 @@ namespace GenesysDiceBot.RollMachine
             string rolledString = "";
             foreach (Die d in diceContainer)
             {
-               rolledString += d.roll();
+               rolledString += d.Roll();
             }
             return rolledString;
         }

@@ -149,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="commands\RollerCommands.cs" />
+    <Compile Include="commands\SlashCommands\RollSlashCommands.cs" />
     <Compile Include="commands\TestCommands.cs" />
     <Compile Include="config\JSONReader.cs" />
     <Compile Include="Dice\NegativeDie.cs" />

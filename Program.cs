@@ -1,11 +1,15 @@
 ﻿using DSharpPlus;
 using DSharpPlus.CommandsNext;
+using DSharpPlus.CommandsNext.Attributes;
+using DSharpPlus.CommandsNext.Exceptions;
+using DSharpPlus.SlashCommands;
 using GenesysDiceBot.commands;
 using GenesysDiceBot.config;
 using GenesysDiceBot.Dice;
 using System;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+
 
 namespace GenesysDiceBot
 {
@@ -55,9 +59,12 @@ namespace GenesysDiceBot
             };
             
             Commands = Client.UseCommandsNext(commandsConfig);
+            var slashCommandsConfig = Client.UseSlashCommands();
+
 
             // Registers the commands.
             Commands.RegisterCommands<TestCommands>();
+            slashCommandsConfig.RegisterCommands<commands.SlashCommands.RollSlashCommands>();
             
             // Connects to get the bot online and ensure it stays online indefinitely.
             await Client.ConnectAsync();

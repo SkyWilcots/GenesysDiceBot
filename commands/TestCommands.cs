@@ -24,5 +24,12 @@ namespace GenesysDiceBot.commands
             int result = rnd.Next(10) + 1;
             await ctx.Channel.SendMessageAsync($"{ctx.Message.Author.Mention} \n `` {result} ``");
         }
+
+ /*       [Command($"roll {string rollString}")]
+        public async Task RollDice(CommandContext ctx, string rollString)
+        {
+
+        }
+ */
     }
 }

@@ -21,6 +21,11 @@ namespace GenesysDiceBot.Dice
             values[6] = "hh";
             values[7] = "fh";
         }
+        public string Roll()
+        {
+            int result = rnd.Next(faceCount);
+            return values[result];
+        }
     }
 
     public class SetbackDie : Die
@@ -28,13 +33,19 @@ namespace GenesysDiceBot.Dice
         public SetbackDie()
         {
             faceCount = 6;
-            string[] values = new string[faceCount];
+            values = new string[faceCount];
             values[0] = "";
             values[1] = "";
             values[2] = "f";
             values[3] = "f";
             values[4] = "h";
             values[5] = "h";
+
+        }
+        public string Roll()
+        {
+            int result = rnd.Next(faceCount);
+            return values[result];
         }
     }
 
@@ -43,7 +54,7 @@ namespace GenesysDiceBot.Dice
         public ChallengeDie()
         {
             faceCount = 12;
-            string[] values = new string[faceCount];
+            values = new string[faceCount];
             values[0] = "";
             values[1] = "f";
             values[2] = "f";
@@ -56,6 +67,11 @@ namespace GenesysDiceBot.Dice
             values[9] = "hh";
             values[10] = "hh";
             values[11] = "d";
+        }
+        public string Roll()
+        {
+            int result = rnd.Next(faceCount);
+            return values[result];
         }
     }
 }

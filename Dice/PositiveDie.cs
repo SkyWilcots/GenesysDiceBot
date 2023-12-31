@@ -12,7 +12,7 @@ namespace GenesysDiceBot.Dice
         public AbilityDie()
         {
             faceCount = 8;
-            string[] values = new string[faceCount];
+            values = new string[faceCount];
             values[0] = "";
             values[1] = "s";
             values[2] = "s";
@@ -21,6 +21,12 @@ namespace GenesysDiceBot.Dice
             values[5] = "a";
             values[6] = "sa";
             values[7] = "aa";
+
+        }
+        public string Roll()
+        {
+            int result = rnd.Next(faceCount);
+            return values[result];
         }
     }
 
@@ -29,22 +35,28 @@ namespace GenesysDiceBot.Dice
         public BoostDie()
         {
             faceCount = 6;
-            string [] values = new string[faceCount];
+            values = new string[faceCount];
             values[0] = "";
             values[1] = "";
             values[2] = "s";
             values[3] = "sa";
             values[4] = "aa";
             values[5] = "a";
+
+        }
+        public string roll()
+        {
+            int result = rnd.Next(faceCount);
+            return values[result];
         }
     }
-    
+
     public class ProficiencyDie : Die
     {
         public ProficiencyDie()
         {
             faceCount = 12;
-            string[] values = new string[faceCount];
+            values = new string[faceCount];
             values[0] = "";
             values[1] = "s";
             values[2] = "s";
@@ -57,6 +69,12 @@ namespace GenesysDiceBot.Dice
             values[9] = "aa";
             values[10] = "aa";
             values[11] = "t";
+
+        }
+        public string roll()
+        {
+            int result = rnd.Next(faceCount);
+            return values[result];
         }
     }
 }

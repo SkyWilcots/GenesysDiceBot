@@ -8,11 +8,15 @@ namespace GenesysDiceBot.Dice
 {
     public class Die
     {
+        internal static Random rnd = new Random();
+
         internal int faceCount { get; set; }
         internal string[] values { get; set; }
-        internal string faceValue
+        private string _faceValue;
+
+            internal string faceValue
         {
-            get { return faceValue; }
+            get { return _faceValue; }
             set
             {
                 if (value == "s" || 
@@ -27,8 +31,8 @@ namespace GenesysDiceBot.Dice
                     value == "ff" || 
                     value == "fh" || 
                     value == "hh")
-                { faceValue = value; }
-                else { faceValue = ""; }
+                { _faceValue = value; }
+                else { _faceValue = ""; }
             }
         }
 
@@ -44,9 +48,8 @@ namespace GenesysDiceBot.Dice
             values[5] = "d";
         }
 
-        public string roll()
+        public string Roll()
         {
-            Random rnd = new Random();
             int result = rnd.Next(faceCount);
             return values[result];
         }
