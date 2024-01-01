@@ -1,4 +1,5 @@
-﻿using GenesysDiceBot.RollMachine;
+﻿using GenesysDiceBot.Dice;
+using GenesysDiceBot.RollMachine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,13 @@ namespace UnitTests
         {
             //Arrange
             Roller r = new Roller();
-            Dictionary<char,int> testDictionary = new Dictionary<char,int>();
+            Dictionary<char, long?> testDictionary = new Dictionary<char, long?>();
             string result = "sssaafh";
             testDictionary = r.TallyIconTotal(result);
 
-            Dictionary<char, int> controlDictionary = new Dictionary<char, int>
+            Dictionary<char, long?> controlDictionary = new Dictionary<char, long?>
             {
-               
+
                 { 's', 2 },
                 { 'f', 0 },
                 { 'a', 1 },
@@ -33,16 +34,16 @@ namespace UnitTests
 
 
             //Act
-            Dictionary<char, int> resultMap = r.NetIconTotal(testDictionary);
+            Dictionary<char, long?> resultMap = r.NetIconTotal(testDictionary);
 
-                Console.WriteLine("resultMap Dictionary:");
-            foreach (KeyValuePair<char,int> ci in resultMap)
+            Console.WriteLine("resultMap Dictionary:");
+            foreach (KeyValuePair<char, long?> ci in resultMap)
             {
                 Console.WriteLine(ci.Key + ", " + ci.Value);
             }
 
             Console.WriteLine("controlDictionary Dictionary:");
-            foreach (KeyValuePair<char, int> ci in controlDictionary)
+            foreach (KeyValuePair<char, long?> ci in controlDictionary)
             {
                 Console.WriteLine(ci.Key + ", " + ci.Value);
             }
@@ -56,11 +57,11 @@ namespace UnitTests
         {
             //Arrange
             Roller r = new Roller();
-            Dictionary<char, int> testDictionary = new Dictionary<char, int>();
+            Dictionary<char, long?> testDictionary = new Dictionary<char, long?>();
             string result = "fffsahhhtd";
             testDictionary = r.TallyIconTotal(result);
 
-            Dictionary<char, int> controlDictionary = new Dictionary<char, int>
+            Dictionary<char, long?> controlDictionary = new Dictionary<char, long?>
             {
 
                 { 's', 0 },
@@ -73,16 +74,16 @@ namespace UnitTests
 
 
             //Act
-            Dictionary<char, int> resultMap = r.NetIconTotal(testDictionary);
+            Dictionary<char, long?> resultMap = r.NetIconTotal(testDictionary);
 
             Console.WriteLine("resultMap Dictionary:");
-            foreach (KeyValuePair<char, int> ci in resultMap)
+            foreach (KeyValuePair<char, long?> ci in resultMap)
             {
                 Console.WriteLine(ci.Key + ", " + ci.Value);
             }
 
             Console.WriteLine("controlDictionary Dictionary:");
-            foreach (KeyValuePair<char, int> ci in controlDictionary)
+            foreach (KeyValuePair<char, long?> ci in controlDictionary)
             {
                 Console.WriteLine(ci.Key + ", " + ci.Value);
             }
@@ -97,11 +98,11 @@ namespace UnitTests
         {
             //Arrange
             Roller r = new Roller();
-            Dictionary<char, int> testDictionary = new Dictionary<char, int>();
+            Dictionary<char, long?> testDictionary = new Dictionary<char, long?>();
             string result = "sssssftahh";
             testDictionary = r.TallyIconTotal(result);
 
-            Dictionary<char, int> controlDictionary = new Dictionary<char, int>
+            Dictionary<char, long?> controlDictionary = new Dictionary<char, long?>
             {
 
                 { 's', 5 },
@@ -114,16 +115,16 @@ namespace UnitTests
 
 
             //Act
-            Dictionary<char, int> resultMap = r.NetIconTotal(testDictionary);
+            Dictionary<char, long?> resultMap = r.NetIconTotal(testDictionary);
 
             Console.WriteLine("resultMap Dictionary:");
-            foreach (KeyValuePair<char, int> ci in resultMap)
+            foreach (KeyValuePair<char, long?> ci in resultMap)
             {
                 Console.WriteLine(ci.Key + ", " + ci.Value);
             }
 
             Console.WriteLine("controlDictionary Dictionary:");
-            foreach (KeyValuePair<char, int> ci in controlDictionary)
+            foreach (KeyValuePair<char, long?> ci in controlDictionary)
             {
                 Console.WriteLine(ci.Key + ", " + ci.Value);
             }
@@ -137,11 +138,11 @@ namespace UnitTests
         {
             //Arrange
             Roller r = new Roller();
-            Dictionary<char, int> testDictionary = new Dictionary<char, int>();
+            Dictionary<char, long?> testDictionary = new Dictionary<char, long?>();
             string result = "ffffddstaah";
             testDictionary = r.TallyIconTotal(result);
 
-            Dictionary<char, int> controlDictionary = new Dictionary<char, int>
+            Dictionary<char, long?> controlDictionary = new Dictionary<char, long?>
             {
 
                 { 's', 0 },
@@ -154,16 +155,16 @@ namespace UnitTests
 
 
             //Act
-            Dictionary<char, int> resultMap = r.NetIconTotal(testDictionary);
+            Dictionary<char, long?> resultMap = r.NetIconTotal(testDictionary);
 
             Console.WriteLine("resultMap Dictionary:");
-            foreach (KeyValuePair<char, int> ci in resultMap)
+            foreach (KeyValuePair<char, long?> ci in resultMap)
             {
                 Console.WriteLine(ci.Key + ", " + ci.Value);
             }
 
             Console.WriteLine("controlDictionary Dictionary:");
-            foreach (KeyValuePair<char, int> ci in controlDictionary)
+            foreach (KeyValuePair<char, long?> ci in controlDictionary)
             {
                 Console.WriteLine(ci.Key + ", " + ci.Value);
             }
@@ -171,5 +172,56 @@ namespace UnitTests
             //Assert
             CollectionAssert.AreEqual(controlDictionary, resultMap);
         }
+
+        [TestMethod]
+        public void AddToContainerMethodShouldAddCorrectNumberOfDice()
+        {
+            //Arrange
+            var r = new Roller();
+            List<Die> controlContainer = new List<Die>();
+
+            AbilityDie a1 = new AbilityDie();
+            AbilityDie a2 = new AbilityDie();
+            AbilityDie a3 = new AbilityDie();
+            AbilityDie a4 = new AbilityDie();
+            controlContainer.Add(a1);
+            controlContainer.Add(a2);
+            controlContainer.Add(a3);
+            controlContainer.Add(a4);
+
+            //Act
+            r.AddToContainer(typeof(AbilityDie), 4);
+
+            //Assert
+            Assert.AreEqual(controlContainer.Count, r.GetDiceContainer().Count);
+        }
+
+        [TestMethod]
+        public void AddToContainerShouldNotAddDiceOnZero()
+        {
+            //Arrange
+            var r = new Roller();
+            List<Die> controlContainer = new List<Die>();
+
+            //Act
+            r.AddToContainer(typeof(AbilityDie), 0);
+
+            //Assert
+            Assert.AreEqual(controlContainer.Count, 0);
+        }
+
+        [TestMethod]
+        public void AddToContainerShouldIgnoreNegativeValues()
+        { 
+            var r = new Roller();
+            List<Die> controlContainer = new List<Die>();
+
+            //Act
+            r.AddToContainer(typeof(AbilityDie), -5);
+
+            //Assert
+            Assert.AreEqual(controlContainer.Count, 0);
+        }
+
     }
 }

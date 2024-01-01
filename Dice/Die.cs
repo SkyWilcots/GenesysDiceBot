@@ -53,5 +53,18 @@ namespace GenesysDiceBot.Dice
             int result = rnd.Next(faceCount);
             return values[result];
         }
+
+        public virtual void Initialize()
+        {
+            faceCount = 6;
+            values = new string[faceCount];
+            values[0] = "s";
+            values[1] = "a";
+            values[2] = "t";
+            values[3] = "f";
+            values[4] = "h";
+            values[5] = "d";
+        }
+
     }
 }

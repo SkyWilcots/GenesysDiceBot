@@ -11,6 +11,7 @@ namespace GenesysDiceBot.RollMachine
     public class Roller
     {
         public List<Die> diceContainer { get; set; }
+        public List<Type> listOfDieTypes { get; }
         public AbilityDie abilityDie { get; }
         public ProficiencyDie proficiencyDie { get; }
         public BoostDie boostDie { get; }
@@ -21,6 +22,17 @@ namespace GenesysDiceBot.RollMachine
         public Roller()
         {
             diceContainer = new List<Die>();
+            listOfDieTypes = new List<Type>
+            {
+                typeof(Die),
+                typeof(AbilityDie),
+                typeof(ProficiencyDie),
+                typeof(BoostDie),
+                typeof(DifficultyDie),
+                typeof(ChallengeDie),
+                typeof(SetbackDie)
+            };
+
             abilityDie = new AbilityDie();
             proficiencyDie = new ProficiencyDie();
             boostDie = new BoostDie();
@@ -30,6 +42,49 @@ namespace GenesysDiceBot.RollMachine
             
         }
 
+        public List<Type> GetTypes()
+        {
+            return listOfDieTypes;
+        }
+        public void AddToContainer(Type diceType, int diceToAdd)
+        {
+            if(diceToAdd < 0) diceToAdd = 0;
+            if (diceToAdd == 0) return;
+            else
+            {
+                for (int i = 0; i < diceToAdd; i++)
+                {
+                    Die d = (Die)Activator.CreateInstance(diceType);
+                    d.Initialize();
+                    this.diceContainer.Add(d);
+                }
+            }
+        }
+
+        public void AddToContainer(Type diceType, long? diceToAdd)
+        {
+            if (diceToAdd < 0) diceToAdd = 0;
+            if (diceToAdd == 0) return;
+            else
+            {
+                for (int i = 0; i < diceToAdd; i++)
+                {
+                    Die d = (Die)Activator.CreateInstance(diceType);
+                    d.Initialize();
+                    this.diceContainer.Add(d);
+                }
+            }
+        }
+
+        public List<Die> GetDiceContainer()
+        {
+           return this.diceContainer;
+        }
+
+        public void ClearContainer()
+        {
+            this.diceContainer?.Clear();
+        }
         public string RollDice(List<Die> diceContainer)
         {
             string rolledString = "";
@@ -40,10 +95,10 @@ namespace GenesysDiceBot.RollMachine
             return rolledString;
         }
 
-        public Dictionary<char,int> TallyIconTotal(string rolledString)
+        public Dictionary<char,long?> TallyIconTotal(string rolledString)
         {
             //string resultMessage = "You have rolled: \n";
-            Dictionary<char, int> iconCounter = new Dictionary<char, int>();
+            Dictionary<char, long?> iconCounter = new Dictionary<char, long?>();
 
             iconCounter.Add('s',0);
             iconCounter.Add('f',0);
@@ -60,7 +115,7 @@ namespace GenesysDiceBot.RollMachine
             return iconCounter;
         }
 
-        public Dictionary<char,int> NetIconTotal(Dictionary<char,int> talliedIconTotal)
+        public Dictionary<char,long?> NetIconTotal(Dictionary<char,long?> talliedIconTotal)
         {
             if (talliedIconTotal['s'] + talliedIconTotal['t'] <= talliedIconTotal['f'] + talliedIconTotal['d'])
             {
@@ -99,15 +154,16 @@ namespace GenesysDiceBot.RollMachine
             return talliedIconTotal;
         }
 
-        public string ResultsWriteUp(Dictionary<char,int> results)
+        public string ResultsWriteUp(Dictionary<char,long?> results)
         {
-            string writeup = "You rolled: \n\n";
-            writeup += "Successes: " + results['s'] + "\n";
-            writeup += "Failures: " + results['f'] + "\n";
-            writeup += "Advantages: " + results['a'] + "\n";
-            writeup += "Threats: " + results['h'] + "\n";
-            writeup += "Triumphs: " + results['t'] + "\n";
-            writeup += "Despairs: " + results['d'];
+            string writeup = "";
+        //    writeup += "You rolled: \n\n";
+            writeup += "**Successes:** " + results['s'] + "\n";
+            writeup += "**Failures:** " + results['f'] + "\n";
+            writeup += "**Advantages:** " + results['a'] + "\n";
+            writeup += "**Threats:** " + results['h'] + "\n";
+            writeup += "**Triumphs:** " + results['t'] + "\n";
+            writeup += "**Despairs:** " + results['d'];
 
 
             return writeup;

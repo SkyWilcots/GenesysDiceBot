@@ -8,7 +8,7 @@ namespace GenesysDiceBot
     internal class TestClass
     {
 
-            static void Main(string[] args)
+  /*          static void Main(string[] args)
             {
                 //Test Line
                 Die d = new Die();
@@ -52,7 +52,7 @@ namespace GenesysDiceBot
                 { 'd', 0 }
             };*/
 
-            Console.WriteLine(result);
+ /*           Console.WriteLine(result);
             Dictionary<char, int> resultMap = r.NetIconTotal(testDictionary);
             foreach (KeyValuePair<char, int> ci in resultMap)
             {
@@ -61,6 +61,6 @@ namespace GenesysDiceBot
 
             Console.WriteLine(r.ResultsWriteUp(resultMap));
 
-        }
+        }*/
     }
 }
