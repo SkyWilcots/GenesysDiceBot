@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace GenesysDiceBot.Dice
         internal int faceCount { get; set; }
         internal string[] values { get; set; }
         private string _faceValue;
+        internal Bitmap[] faceIcons { get; set; }
 
             internal string faceValue
         {

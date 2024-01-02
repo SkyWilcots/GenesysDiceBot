@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -21,6 +22,8 @@ namespace GenesysDiceBot.Dice
             values[5] = "a";
             values[6] = "sa";
             values[7] = "aa";
+
+            Bitmap green = new Bitmap("");
 
         }
         public string Roll()
