@@ -54,7 +54,7 @@ namespace GenesysDiceBot.commands.SlashCommands
             if (triNum > 0) {iconDictionary['d'] += desNum; addendumCounter += desNum; addendum += $"{desNum} Despairs were added to the roll.\n"; }
 
             string finePrint = ""; 
-            if (addendumCounter > 0) { finePrint += "*\n\n"; }
+            if (addendumCounter > 0) { finePrint += "   *\n\n"; }
 
             await ctx.Channel.SendMessageAsync($"{ctx.User.Mention} \n" +
                 $"You rolled:\n\n"
