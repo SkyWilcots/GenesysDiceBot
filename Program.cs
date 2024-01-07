@@ -2,6 +2,8 @@
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.CommandsNext.Exceptions;
+using DSharpPlus.Interactivity;
+using DSharpPlus.Interactivity.Extensions;
 using DSharpPlus.SlashCommands;
 using GenesysDiceBot.commands;
 using GenesysDiceBot.config;
@@ -16,10 +18,10 @@ namespace GenesysDiceBot
     internal class Program
     {
         //Initializes an instance of a Discord Client, to use it to connect to Discord and get the Bot online.
-        private static DiscordClient Client { get; set; }
+        public static DiscordClient Client { get; private set; }
         
         //Makes a variable for the Commands that the Discord Bot will be used for.
-        private static CommandsNextExtension Commands { get; set; }
+        public static CommandsNextExtension Commands { get; private set; }
 
 
         static async Task Main(string[] args)
@@ -30,8 +32,10 @@ namespace GenesysDiceBot
 
             // Setup our first configuration for Discord
             var discordConfig = new DiscordConfiguration()
-            {   
-                Intents = DiscordIntents.All,
+            {
+                Intents = DiscordIntents.AllUnprivileged
+            | DiscordIntents.GuildEmojis
+            | DiscordIntents.MessageContents,
                
                 // Puts in the token for use by the bot
                 Token = jsonReader.token,
@@ -45,6 +49,12 @@ namespace GenesysDiceBot
             
             // Instantiate a new client with all the properties of the discordConfig object above.
             Client = new DiscordClient(discordConfig);
+
+            // Set the default timeout for Commands that use interactivity
+         /*   Client.UseInteractivity(new InteractivityConfiguration()
+            {
+                Timeout = TimeSpan.FromMinutes(2)
+            });*/
             
             // Task Handler Ready event turns on the Client 
             Client.Ready += Client_Ready;

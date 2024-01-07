@@ -23,7 +23,6 @@ namespace GenesysDiceBot.Dice
             values[6] = "sa";
             values[7] = "aa";
 
-            Bitmap green = new Bitmap("");
 
         }
         public string Roll()

@@ -14,7 +14,6 @@ namespace GenesysDiceBot.Dice
         internal int faceCount { get; set; }
         internal string[] values { get; set; }
         private string _faceValue;
-        internal Bitmap[] faceIcons { get; set; }
 
             internal string faceValue
         {
@@ -68,5 +67,8 @@ namespace GenesysDiceBot.Dice
             values[5] = "d";
         }
 
+        
+        }
+
     }
-}
+
