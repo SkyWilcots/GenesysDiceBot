@@ -31,13 +31,14 @@ namespace GenesysDiceBot.commands.SlashCommands
                                                                     [Option("Advantages", "Adds a number of Advantage icons to the final total")] long? advNum = 0,
                                                                     [Option("Threats", "Adds a number of Threat icons to the final total")] long? threatNum = 0,
                                                                     [Option("Triumphs", "Adds a number of Threat icons to the final total")] long? triNum = 0,
-                                                                    [Option("Despairs", "Adds a number of Despair icons to the final total")] long? desNum = 0
-                                                                    )
+                                                                    [Option("Despairs", "Adds a number of Despair icons to the final total")] long? desNum = 0,
+
+                                                                    [Option("Comment", "An optional comment to go with your roll")] string comment = ""
+            )
 
 
         {
             await ctx.CreateResponseAsync(DSharpPlus.InteractionResponseType.ChannelMessageWithSource, new DSharpPlus.Entities.DiscordInteractionResponseBuilder().WithContent("Rolling..."));
-
             Roller r = new Roller();
             List<DiscordEmoji> discordEmojis = new List<DiscordEmoji>();
             r.AddToContainer(typeof(AbilityDie), abilityNum);
@@ -50,6 +51,7 @@ namespace GenesysDiceBot.commands.SlashCommands
 
 
             Dictionary<char, long?> iconDictionary = r.TallyIconTotal(r.RollDice(r.GetDiceContainer()));
+            if (comment != "") { comment = $" **\"{comment}\"**"; }
             var emojiLineup = "";
             string addendum = "";
             long? addendumCounter = 0;
@@ -78,10 +80,10 @@ namespace GenesysDiceBot.commands.SlashCommands
             }
 
             string finePrint = "";
-            if (addendumCounter > 0) { finePrint += "   *\n\n"; }
-
+            if (addendumCounter > 0) { finePrint += "\n\n*\n"; }
+            await ctx.DeleteResponseAsync();
             await ctx.Channel.SendMessageAsync($"{ctx.User.Mention} \n" +
-                $"You rolled:\n{emojiLineup}");
+                $"You rolled:{comment}\n{emojiLineup}");
             await ctx.Channel.SendMessageAsync(r.ResultsWriteUp(r.NetIconTotal(iconDictionary)) + finePrint + addendum);
 
         } 
