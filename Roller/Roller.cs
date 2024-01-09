@@ -237,7 +237,9 @@ namespace GenesysDiceBot.RollMachine
                 talliedIconTotal['h'] = 0;
             }
 
-            if (talliedIconTotal['t'] <= talliedIconTotal['d'])
+            // TRIUMPHS AND DESPAIRS DO NOT CANCEL EACH OTHER
+
+  /*          if (talliedIconTotal['t'] <= talliedIconTotal['d'])
             {
                 talliedIconTotal['d'] -= talliedIconTotal['t'];
                 talliedIconTotal['t'] = 0;
@@ -247,7 +249,7 @@ namespace GenesysDiceBot.RollMachine
                 talliedIconTotal['t'] -= talliedIconTotal['d'];
                 talliedIconTotal['d'] = 0;
             }
-           
+           */
 
             return talliedIconTotal;
         }
